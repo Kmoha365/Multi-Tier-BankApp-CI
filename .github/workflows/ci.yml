@@ -15,3 +15,15 @@ jobs:
        with: 
         distribution: 'temurin'
         java-version: '17'
+     - name: cache maven dependencies
+       uses: actions/cache@v4
+       with: 
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml')}}
+        restore-keys: |
+          ${{runner.os}}-m2
+     - name: build app
+       run: mvn clean install
+     - name: unit test
+       run: mvn test
+
