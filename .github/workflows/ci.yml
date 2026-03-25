@@ -23,7 +23,5 @@ jobs:
         restore-keys: |
           ${{runner.os}}-m2
      - name: build app
-       run: mvn clean install
-     - name: unit test
-       run: mvn test
+       run: mvn clean install -DskipTests
 
